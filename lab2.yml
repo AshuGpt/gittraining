@@ -1,0 +1,8 @@
+-name: install package
+hosts: remote
+become: true
+task:
+  -name:dnfinstaller
+ansible.builtin.dnf:
+  name: httpd
+  state: present
