@@ -1,0 +1,7 @@
+- name: testing role
+  hosts: all
+  become: true
+  vars_files: 
+    - Vault1.yml
+  roles:
+    - test

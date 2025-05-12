@@ -1,19 +1,17 @@
 - name: install package
-  hosts: remote
+  hosts: all
   become: true
   tasks:
-  - name: Copy file with owner and permissions
-    ansible.builtin.copy:
-       src: index.html
-       dest: /root/foo.conf
-       owner: root
-       group: root
-       mode: '0644'
-    register: copy_result
-    ignore_errors: yes
-    failed_when: false
-    notify: Propmt user to place index.html
-  handlers:
-  -name:     
+  - name: dnfinstaller
+    ansible.builtin.dnf:
+      name: httpd
+      state: present
+  - name: copy file
+    copy:
+      src: index.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: '0644'  
          
 
