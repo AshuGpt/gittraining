@@ -1,0 +1,591 @@
+[root@master ansiblecode]# git add .
+[root@master ansiblecode]# git commit -m "installation of MYSQL"
+[main 85ba82a] installation of MYSQL
+ 11 files changed, 317 insertions(+), 3 deletions(-)
+ create mode 100644 db_create.yml
+ create mode 100644 displayhealth.yml
+ create mode 100644 install_docker.yml
+ create mode 100644 osfamilydocker.yml
+ create mode 100644 test/files/inventory.ini
+ create mode 100644 test/files/lab4.yml
+ create mode 100644 test/files/osfamilydocker.yml
+ create mode 100644 test/files/vi
+ rename Vault1.yml => vault1.yml (100%)
+[root@master ansiblecode]# git push main origin
+error: src refspec origin does not match any
+error: failed to push some refs to 'main'
+[root@master ansiblecode]# git push origin main
+Enumerating objects: 20, done.
+Counting objects: 100% (20/20), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (13/13), done.
+Writing objects: 100% (14/14), 2.66 KiB | 2.67 MiB/s, done.
+Total 14 (delta 6), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (6/6), completed with 3 local objects.
+To github.com:AshuGpt/gittraining.git
+   27fbd30..85ba82a  main -> main
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+ERROR! Decryption failed (no vault secrets were found that could decrypt) on /root/ansiblecode/vault1.yml
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+ERROR! Decryption failed (no vault secrets were found that could decrypt) on /root/ansiblecode/vault1.yml
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Simulate RDS MySQL setup on CentOS] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Ensure Python 3 and pip are installed] ************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install PyMySQL module for Python 3] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install MariaDB server] ***************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Start and enable MariaDB service] *****************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [create .my.cnf] ***********************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Set MySQL root password] **************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Create a MySQL database] **************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Create a MySQL user with privileges] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+10.0.16.14                 : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[root@master ansiblecode]# git status
+On branch main
+nothing to commit, working tree clean
+[root@master ansiblecode]# vi db_create.yml 
+[root@master ansiblecode]# vi db_create.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Simulate RDS MySQL setup on CentOS] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Ensure Python 3 and pip are installed] ************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install PyMySQL module for Python 3] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install MariaDB server] ***************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Start and enable MariaDB service] *****************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Set MySQL root password] **************************************************************************************************************************************************************
+fatal: [10.0.16.14]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'mysql_root_passwordo' is undefined. 'mysql_root_passwordo' is undefined\n\nThe error appears to be in '/root/ansiblecode/db_create.yml': line 32, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n        enabled: true\n    - name: Set MySQL root password\n      ^ here\n"}
+...ignoring
+
+TASK [create .my.cnf] ***********************************************************************************************************************************************************************
+changed: [10.0.16.14]
+
+TASK [Create a MySQL database] **************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Create a MySQL user with privileges] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+10.0.16.14                 : ok=9    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+
+[root@master ansiblecode]# vi db_create.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Simulate RDS MySQL setup on CentOS] ***************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Ensure Python 3 and pip are installed] ************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install PyMySQL module for Python 3] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Install MariaDB server] ***************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Start and enable MariaDB service] *****************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Set MySQL root password] **************************************************************************************************************************************************************
+fatal: [10.0.16.14]: FAILED! => {"msg": "The task includes an option with an undefined variable. The error was: 'mysql_root_passwordo' is undefined. 'mysql_root_passwordo' is undefined\n\nThe error appears to be in '/root/ansiblecode/db_create.yml': line 32, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n        enabled: true\n    - name: Set MySQL root password\n      ^ here\n"}
+...ignoring
+
+TASK [create .my.cnf] ***********************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Create a MySQL database] **************************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+TASK [Create a MySQL user with privileges] **************************************************************************************************************************************************
+ok: [10.0.16.14]
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+10.0.16.14                 : ok=9    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+
+[root@master ansiblecode]# cd ..
+[root@master ~]# dir
+anaconda-ks.cfg  ansiblecode  Desktop  Documents  Downloads  Music  Pictures  Public  Templates  thinclient_drives  Videos
+[root@master ~]# mkdir mariadb
+[root@master ~]# ll
+total 8
+-rw-------. 1 root root 1002 May  2 09:32 anaconda-ks.cfg
+drwxr-xr-x. 4 root root 4096 May 14 16:47 ansiblecode
+drwxr-xr-x. 2 root root    6 May  2 09:33 Desktop
+drwxr-xr-x. 2 root root    6 May  2 09:33 Documents
+drwxr-xr-x. 2 root root   61 May  8 15:41 Downloads
+drwxr-xr-x. 2 root root    6 May 14 16:50 mariadb
+drwxr-xr-x. 2 root root    6 May  2 09:33 Music
+drwxr-xr-x. 2 root root    6 May  2 09:33 Pictures
+drwxr-xr-x. 2 root root    6 May  2 09:33 Public
+drwxr-xr-x. 2 root root    6 May  2 09:33 Templates
+drwx------. 1 root root    0 May 14 16:40 thinclient_drives
+drwxr-xr-x. 2 root root    6 May  2 09:33 Videos
+[root@master ~]# cd mariadb/
+[root@master mariadb]# ll
+total 0
+[root@master mariadb]# cd ..
+[root@master ~]# cd ansiblecode/
+[root@master ansiblecode]# ll
+total 76
+-rw-r--r--.  1 root root  482 May  8 15:25 cleanup.yml
+-rw-r--r--.  1 root root  515 May  8 16:09 copy-files.yml
+-rw-r--r--.  1 root root 1630 May 14 16:47 db_create.yml
+-rw-r--r--.  1 root root  653 May 14 11:57 displayhealth.yml
+-rw-r--r--.  1 root root    0 May  8 16:20 file1.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file2.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file3.conf
+-rw-r--r--.  1 root root  512 May  7 16:46 fileexist.yml
+-rw-r--r--.  1 root root  262 May  7 17:42 gatherfact.yml
+-rw-r--r--.  1 root root    0 May  7 15:17 index.html
+-rw-r--r--.  1 root root  724 May 12 17:48 install_docker.yml
+-rw-r--r--.  1 root root  186 May 14 11:48 inventory.ini
+-rw-r--r--.  1 root root  159 May  6 17:40 lab2.yml
+-rw-r--r--.  1 root root  305 May 14 10:51 lab3.yml
+-rw-r--r--.  1 root root  364 May 14 10:50 lab4.yml
+-rw-r--r--.  1 root root  801 May  7 17:53 lab5.yml
+-rw-r--r--.  1 root root  101 May 12 14:54 labrole.yml
+-rw-r--r--.  1 root root  276 May  6 16:46 lab.yml
+-rw-r--r--.  1 root root 2326 May 14 11:54 osfamilydocker.yml
+-rw-r--r--.  1 root root  325 May  8 16:49 selinuxtest.yml
+drwxr-xr-x. 11 root root  163 May 12 15:07 test
+-rw-r--r--.  1 root root  938 May  7 17:26 varprompt.yml
+-rw-------.  1 root root  419 May 14 11:39 vault1.yml
+-rw-------.  1 root root  419 May  7 15:01 vault.yml
+[root@master ansiblecode]# mv db_create.yml /root/mariadb/
+[root@master ansiblecode]# ll
+total 72
+-rw-r--r--.  1 root root  482 May  8 15:25 cleanup.yml
+-rw-r--r--.  1 root root  515 May  8 16:09 copy-files.yml
+-rw-r--r--.  1 root root  653 May 14 11:57 displayhealth.yml
+-rw-r--r--.  1 root root    0 May  8 16:20 file1.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file2.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file3.conf
+-rw-r--r--.  1 root root  512 May  7 16:46 fileexist.yml
+-rw-r--r--.  1 root root  262 May  7 17:42 gatherfact.yml
+-rw-r--r--.  1 root root    0 May  7 15:17 index.html
+-rw-r--r--.  1 root root  724 May 12 17:48 install_docker.yml
+-rw-r--r--.  1 root root  186 May 14 11:48 inventory.ini
+-rw-r--r--.  1 root root  159 May  6 17:40 lab2.yml
+-rw-r--r--.  1 root root  305 May 14 10:51 lab3.yml
+-rw-r--r--.  1 root root  364 May 14 10:50 lab4.yml
+-rw-r--r--.  1 root root  801 May  7 17:53 lab5.yml
+-rw-r--r--.  1 root root  101 May 12 14:54 labrole.yml
+-rw-r--r--.  1 root root  276 May  6 16:46 lab.yml
+-rw-r--r--.  1 root root 2326 May 14 11:54 osfamilydocker.yml
+-rw-r--r--.  1 root root  325 May  8 16:49 selinuxtest.yml
+drwxr-xr-x. 11 root root  163 May 12 15:07 test
+-rw-r--r--.  1 root root  938 May  7 17:26 varprompt.yml
+-rw-------.  1 root root  419 May 14 11:39 vault1.yml
+-rw-------.  1 root root  419 May  7 15:01 vault.yml
+[root@master ansiblecode]# cd ..
+[root@master ~]# cd ansiblecode/
+
+
+[root@master ansiblecode]# 
+[root@master ansiblecode]# 
+[root@master ansiblecode]# vi lab
+lab2.yml     lab3.yml     lab4.yml     lab5.yml     labrole.yml  lab.yml      
+[root@master ansiblecode]# vi labrole.yml 
+[root@master ansiblecode]# dir
+cleanup.yml	displayhealth.yml  file2.txt   fileexist.yml   index.html	   inventory.ini  lab3.yml  lab5.yml	 lab.yml	     selinuxtest.yml  varprompt.yml  vault.yml
+copy-files.yml	file1.txt	   file3.conf  gatherfact.yml  install_docker.yml  lab2.yml	  lab4.yml  labrole.yml  osfamilydocker.yml  test	      vault1.yml
+[root@master ansiblecode]# ll
+total 72
+-rw-r--r--.  1 root root  482 May  8 15:25 cleanup.yml
+-rw-r--r--.  1 root root  515 May  8 16:09 copy-files.yml
+-rw-r--r--.  1 root root  653 May 14 11:57 displayhealth.yml
+-rw-r--r--.  1 root root    0 May  8 16:20 file1.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file2.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file3.conf
+-rw-r--r--.  1 root root  512 May  7 16:46 fileexist.yml
+-rw-r--r--.  1 root root  262 May  7 17:42 gatherfact.yml
+-rw-r--r--.  1 root root    0 May  7 15:17 index.html
+-rw-r--r--.  1 root root  724 May 12 17:48 install_docker.yml
+-rw-r--r--.  1 root root  186 May 14 11:48 inventory.ini
+-rw-r--r--.  1 root root  159 May  6 17:40 lab2.yml
+-rw-r--r--.  1 root root  305 May 14 10:51 lab3.yml
+-rw-r--r--.  1 root root  364 May 14 10:50 lab4.yml
+-rw-r--r--.  1 root root  801 May  7 17:53 lab5.yml
+-rw-r--r--.  1 root root  101 May 14 16:53 labrole.yml
+-rw-r--r--.  1 root root  276 May  6 16:46 lab.yml
+-rw-r--r--.  1 root root 2326 May 14 11:54 osfamilydocker.yml
+-rw-r--r--.  1 root root  325 May  8 16:49 selinuxtest.yml
+drwxr-xr-x. 11 root root  163 May 12 15:07 test
+-rw-r--r--.  1 root root  938 May  7 17:26 varprompt.yml
+-rw-------.  1 root root  419 May 14 11:39 vault1.yml
+-rw-------.  1 root root  419 May  7 15:01 vault.yml
+[root@master ansiblecode]# cd..
+bash: cd..: command not found...
+[root@master ansiblecode]# cd ..
+[root@master ~]# ll
+total 8
+-rw-------. 1 root root 1002 May  2 09:32 anaconda-ks.cfg
+drwxr-xr-x. 4 root root 4096 May 14 16:53 ansiblecode
+drwxr-xr-x. 2 root root    6 May  2 09:33 Desktop
+drwxr-xr-x. 2 root root    6 May  2 09:33 Documents
+drwxr-xr-x. 2 root root   61 May  8 15:41 Downloads
+drwxr-xr-x. 2 root root   27 May 14 16:52 mariadb
+drwxr-xr-x. 2 root root    6 May  2 09:33 Music
+drwxr-xr-x. 2 root root    6 May  2 09:33 Pictures
+drwxr-xr-x. 2 root root    6 May  2 09:33 Public
+drwxr-xr-x. 2 root root    6 May  2 09:33 Templates
+drwx------. 1 root root    0 May 14 16:40 thinclient_drives
+drwxr-xr-x. 2 root root    6 May  2 09:33 Videos
+[root@master ~]# cd mariadb/
+[root@master mariadb]# ll
+total 4
+-rw-r--r--. 1 root root 1630 May 14 16:47 db_create.yml
+[root@master mariadb]# vi db_create.yml 
+[root@master mariadb]# rm db_create.yml 
+rm: remove regular file 'db_create.yml'? y
+[root@master mariadb]# vi db_create.yml
+[root@master mariadb]# cd ..
+[root@master ~]# ll
+total 8
+-rw-------. 1 root root 1002 May  2 09:32 anaconda-ks.cfg
+drwxr-xr-x. 4 root root 4096 May 14 16:53 ansiblecode
+drwxr-xr-x. 2 root root    6 May  2 09:33 Desktop
+drwxr-xr-x. 2 root root    6 May  2 09:33 Documents
+drwxr-xr-x. 2 root root   61 May  8 15:41 Downloads
+drwxr-xr-x. 2 root root   27 May 14 16:58 mariadb
+drwxr-xr-x. 2 root root    6 May  2 09:33 Music
+drwxr-xr-x. 2 root root    6 May  2 09:33 Pictures
+drwxr-xr-x. 2 root root    6 May  2 09:33 Public
+drwxr-xr-x. 2 root root    6 May  2 09:33 Templates
+drwx------. 1 root root    0 May 14 16:40 thinclient_drives
+drwxr-xr-x. 2 root root    6 May  2 09:33 Videos
+[root@master ~]# cd mariadb/
+[root@master mariadb]# mv db_create.yml ../ansiblecode/
+[root@master mariadb]# cd ..
+[root@master ~]# cd ansiblecode/
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+[WARNING]: Could not match supplied host pattern, ignoring: remotes
+
+PLAY [Simulate RDS MySQL setup on CentOS] **************************************
+skipping: no hosts matched
+
+PLAY RECAP *********************************************************************
+
+[root@master ansiblecode]# vi db_create.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+ERROR! Decryption failed (no vault secrets were found that could decrypt) on /root/ansiblecode/vault.yml
+[root@master ansiblecode]# vi db_create.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini db_create.yml --ask-vault-pass
+Vault password: 
+
+PLAY [Simulate RDS MySQL setup on CentOS] **************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [Ensure Python 3 and pip are installed] ***********************************
+ok: [10.0.16.14]
+changed: [localhost]
+
+TASK [Install PyMySQL module for Python 3] *************************************
+ok: [10.0.16.14]
+changed: [localhost]
+
+TASK [Install MariaDB server] **************************************************
+ok: [10.0.16.14]
+
+
+changed: [localhost]
+
+TASK [Start and enable MariaDB service] ****************************************
+ok: [10.0.16.14]
+changed: [localhost]
+
+TASK [Set MySQL root password] *************************************************
+changed: [localhost]
+ok: [10.0.16.14]
+
+TASK [Create a MySQL database] *************************************************
+changed: [localhost]
+ok: [10.0.16.14]
+
+TASK [Create a MySQL user with privileges] *************************************
+changed: [localhost]
+ok: [10.0.16.14]
+
+PLAY RECAP *********************************************************************
+10.0.16.14                 : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=8    changed=7    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[root@master ansiblecode]# 
+[root@master ansiblecode]# 
+[root@master ansiblecode]# ansible-galaxy role init mariadb_Ashu 
+- Role mariadb_Ashu was created successfully
+[root@master ansiblecode]# cd mariadb_Ashu/
+[root@master mariadb_Ashu]# cd vars/
+[root@master vars]# vi main.yml 
+[root@master vars]# cd ..
+[root@master mariadb_Ashu]# cd tasks/
+[root@master tasks]# vi main.yml 
+[root@master tasks]# cd ..
+[root@master mariadb_Ashu]# cd ..
+[root@master ansiblecode]# ll
+total 76
+-rw-r--r--.  1 root root  482 May  8 15:25 cleanup.yml
+-rw-r--r--.  1 root root  515 May  8 16:09 copy-files.yml
+-rw-r--r--.  1 root root 1406 May 14 17:03 db_create.yml
+-rw-r--r--.  1 root root  653 May 14 11:57 displayhealth.yml
+-rw-r--r--.  1 root root    0 May  8 16:20 file1.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file2.txt
+-rw-r--r--.  1 root root    0 May  8 16:20 file3.conf
+-rw-r--r--.  1 root root  512 May  7 16:46 fileexist.yml
+-rw-r--r--.  1 root root  262 May  7 17:42 gatherfact.yml
+-rw-r--r--.  1 root root    0 May  7 15:17 index.html
+-rw-r--r--.  1 root root  724 May 12 17:48 install_docker.yml
+-rw-r--r--.  1 root root  186 May 14 11:48 inventory.ini
+-rw-r--r--.  1 root root  159 May  6 17:40 lab2.yml
+-rw-r--r--.  1 root root  305 May 14 10:51 lab3.yml
+-rw-r--r--.  1 root root  364 May 14 10:50 lab4.yml
+-rw-r--r--.  1 root root  801 May  7 17:53 lab5.yml
+-rw-r--r--.  1 root root  101 May 14 16:53 labrole.yml
+-rw-r--r--.  1 root root  276 May  6 16:46 lab.yml
+drwxr-xr-x. 10 root root  135 May 14 17:05 mariadb_Ashu
+-rw-r--r--.  1 root root 2326 May 14 11:54 osfamilydocker.yml
+-rw-r--r--.  1 root root  325 May  8 16:49 selinuxtest.yml
+drwxr-xr-x. 11 root root  163 May 12 15:07 test
+-rw-r--r--.  1 root root  938 May  7 17:26 varprompt.yml
+-rw-------.  1 root root  419 May 14 11:39 vault1.yml
+-rw-------.  1 root root  419 May  7 15:01 vault.yml
+[root@master ansiblecode]# vi labrole.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini labrole.yml --ask-vault-pass
+Vault password: 
+ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  mapping values are not allowed in this context
+
+The error appears to be in '/root/ansiblecode/test/tasks/main.yml': line 2, column 7, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+------
+- name: Install apache httpd
+      ^ here
+[root@master ansiblecode]# vi labrole.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini labrole.yml --ask-vault-pass
+Vault password: 
+ERROR! We were unable to read either as JSON nor YAML, these are the errors we got from each:
+JSON: Expecting value: line 1 column 1 (char 0)
+
+Syntax Error while loading YAML.
+  but found another document
+
+The error appears to be in '/root/ansiblecode/mariadb_Ashu/tasks/main.yml': line 2, column 1, but may
+be elsewhere in the file depending on the exact syntax problem.
+
+The offending line appears to be:
+
+---
+---
+^ here
+[root@master ansiblecode]# cd mariadb_Ashu/tasks
+[root@master tasks]# vi main.yml 
+[root@master tasks]# cd ..
+[root@master mariadb_Ashu]# cd ..
+[root@master ansiblecode]# ansible-playbook -i inventory.ini labrole.yml --ask-vault-pass
+Vault password: 
+
+PLAY [testing role] *************************************************************************************************************************************************************************
+ERROR! vars file Vault1.yml was not found
+Could not find file on the Ansible Controller.
+If you are using a module and expect the file to exist on the remote, see the remote_src option
+[root@master ansiblecode]# vi vault
+vault1.yml  vault.yml   
+[root@master ansiblecode]# vi labrole.yml 
+[root@master ansiblecode]# ansible-playbook -i inventory.ini labrole.yml --ask-vault-pass
+Vault password: 
+
+PLAY [testing role] *************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] **********************************************************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Ensure Python 3 and pip are installed] *********************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Install PyMySQL module for Python 3] ***********************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Install MariaDB server] ************************************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Start and enable MariaDB service] **************************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Create .m.cnf] *********************************************************************************************************************************************************
+changed: [localhost]
+changed: [10.0.16.14]
+
+TASK [mariadb_Ashu : Set MySQL root password] ***********************************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Create a MySQL database] ***********************************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+TASK [mariadb_Ashu : Create a MySQL user with privileges] ***********************************************************************************************************************************
+ok: [localhost]
+ok: [10.0.16.14]
+
+PLAY RECAP **********************************************************************************************************************************************************************************
+10.0.16.14                 : ok=9    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=9    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[root@master ansiblecode]# cd mariadb_Ashu/
+[root@master mariadb_Ashu]# git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+Initialized empty Git repository in /root/ansiblecode/mariadb_Ashu/.git/
+[root@master mariadb_Ashu]# git add .
+[root@master mariadb_Ashu]# git commit -m "Adding roles"
+[master (root-commit) 06915f8] Adding roles
+ 8 files changed, 159 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 defaults/main.yml
+ create mode 100644 handlers/main.yml
+ create mode 100644 meta/main.yml
+ create mode 100644 tasks/main.yml
+ create mode 100644 tests/inventory
+ create mode 100644 tests/test.yml
+ create mode 100644 vars/main.yml
+[root@master mariadb_Ashu]# git remote add origin git@github.com:AshuGpt/Mariadb_Ashu.git
+git branch -M main
+git push -u origin main
+Enumerating objects: 16, done.
+Counting objects: 100% (16/16), done.
+Delta compression using up to 2 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (16/16), 2.79 KiB | 2.79 MiB/s, done.
+Total 16 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To github.com:AshuGpt/Mariadb_Ashu.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+[root@master mariadb_Ashu]# ansible-galaxy import Ashugpt Mariadb_Ashu --token 1e0d2d4a8167156af6953d729ea2a5f57f60bd6a
+ERROR! None (HTTP Code: 500, Message: Internal Server Error)
+[root@master mariadb_Ashu]# ansible-galaxy import AshuGpt Mariadb_Ashu --token 1e0d2d4a8167156af6953d729ea2a5f57f60bd6a
+Successfully submitted import request 2112263327034238316757969368205917837
+
+Starting import: task_id=2112263327034238316757969368205917837, pulp_id=0196ce9f-5d19-7a3b-9f80-705af0ba7e8d
+
+==== PARAMETERS ====
+importer username: AshuGpt
+matched user: AshuGpt id:30723
+github_user: AshuGpt
+github_repo: Mariadb_Ashu
+github_reference: None
+alternate_clone_url: None
+alternate_namespace_name: None
+alternate_role_name: None
+
+==== CHECK FOR MATCHING ROLE(S) ====
+user:AshuGpt repo:Mariadb_Ashu did not match any existing roles
+
+===== CLONING REPO =====
+cloning https://github.com/AshuGpt/Mariadb_Ashu ...
+
+===== GIT ATTRIBUTES =====
+github_reference(branch): main
+github_commit: 06915f80680a1261084c9960380a6c7da2b14f21
+github_commit_message: Adding roles
+github_commit_date: 2025-05-14T17:14:59+05:30
+
+===== LOADING ROLE =====
+Importing with galaxy-importer 0.4.29
+Determined role name to be Mariadb_Ashu
+Linting role Mariadb_Ashu via ansible-lint...
+Mariadb_Ashu:1: role-name: Role name Mariadb_Ashu does not match ``^[a-z][a-z0-9_]*$`` pattern.
+Mariadb_Ashu/meta/main.yml:1: meta-incorrect: Should change default metadata: author
+Mariadb_Ashu/meta/main.yml:1: meta-incorrect: Should change default metadata: company
+Mariadb_Ashu/meta/main.yml:1: meta-incorrect: Should change default metadata: license
+Mariadb_Ashu/meta/main.yml:1: schema[meta][/]: $.galaxy_info.min_ansible_version 2.1 is not of type 'string'. See https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_reuse_roles.html#using-role-dependencies
+Mariadb_Ashu/tasks/main.yml:2: fqcn[action-core]: Use FQCN for builtin module actions (yum).
+Mariadb_Ashu/tasks/main.yml:8: fqcn[action-core]: Use FQCN for builtin module actions (pip).
+Mariadb_Ashu/tasks/main.yml:12: fqcn[action-core]: Use FQCN for builtin module actions (yum).
+Mariadb_Ashu/tasks/main.yml:16: fqcn[action-core]: Use FQCN for builtin module actions (service).
+Mariadb_Ashu/tasks/main.yml:21: fqcn[action-core]: Use FQCN for builtin module actions (copy).
+Mariadb_Ashu/tasks/main.yml:21: risky-file-permissions: File permissions unset or incorrect.
+Mariadb_Ashu/tasks/main.yml:28:13: syntax-check[unknown-module]: couldn't resolve module/action 'mysql_user'. This often indicates a misspelling, missing collection, or incorrect module path.
+Mariadb_Ashu/tasks/main.yml:29: ignore-errors: Use failed_when and specify error conditions instead of using ignore_errors.
+Mariadb_Ashu/tasks/main.yml:32: yaml[truthy][/]: Truthy value should be one of [false, true]
+Mariadb_Ashu/tests/test.yml:5:7: syntax-check[specific][/]: the role 'mariadb_Ashu' was not found in /tmp/tmpqid_sl6p/Mariadb_Ashu/tests/roles:/tmp/tmpqid_sl6p/.ansible/roles:/app/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/tmp/tmpqid_sl6p/Mariadb_Ashu/tests
+Mariadb_Ashu/vars/main.yml:2: yaml[indentation][/]: Wrong indentation: expected 0 but found 1
+...ansible-lint run complete
+Legacy role loading complete
+
+===== PROCESSING LOADER RESULTS ====
+enumerated role name Mariadb_Ashu
+created new role id:40672 AshuGpt.Mariadb_Ashu
+
+===== COMPUTING ROLE VERSIONS ====
+
+==== SAVING ROLE ====
+
+Import completed
+[root@master mariadb_Ashu]# 
+[root@master mariadb_Ashu]# 
+
