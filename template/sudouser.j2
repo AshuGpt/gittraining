@@ -1,0 +1,4 @@
+# This file is managed by Ansible - do not edit manually
+
+{{ user }} {{ hosts | default('ALL') }} = ({{ runas | default('ALL') }}) {{ nopasswd | default('') }}: {{ commands | join(', ') }}
+

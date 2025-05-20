@@ -1,0 +1,8 @@
+---
+- name: Ping all hosts
+  ping: null
+- name: Copy sample.txt to /tmp on remote hosts
+  copy:
+    src: sample.txt
+    dest: /tmp/sample.txt
+

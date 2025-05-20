@@ -1,0 +1,21 @@
+- name: Configure sudoers for a user
+  hosts: all
+  become: true
+
+  vars_files:
+    - vault1.yml
+
+  tasks:
+    - name: Deploy sudoers configuration
+      template:
+        src: sudoers.j2
+        dest: /etc/sudoers
+        mode: '0440'
+      vars:
+        user: "student"
+        hosts: "ALL"
+        runas: "ALL"
+        nopasswd: "NOPASSWD"   # Set to "" if you want password prompt instead
+        commands:
+          - "ALL"
+

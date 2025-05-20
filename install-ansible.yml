@@ -1,0 +1,9 @@
+---
+- name: Install Ansible on localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install Ansible using dnf
+      dnf:
+        name: ansible
+        state: present

@@ -1,0 +1,10 @@
+---
+# tasks file for training
+---
+- name: Ping all hosts
+  ping: null
+- name: Copy sample.txt to /tmp/sample.txt
+  copy:
+    src: sample.txt
+    dest: /tmp/sample.txt
+

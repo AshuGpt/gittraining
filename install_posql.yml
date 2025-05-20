@@ -1,0 +1,56 @@
+---
+- name: Install and configure PostgreSQL on CentOS/RHEL
+  hosts: all
+  become: true
+  vars_files:
+      - vault1.yml  
+  gather_facts: true
+  collections:
+    - community.postgresql
+    - ansible.builtin
+
+  vars:
+    postgresql_service_name: postgresql
+    postgresql_data_dir: /var/lib/pgsql/data
+
+  tasks:
+
+    - name: Install PostgreSQL packages
+      ansible.builtin.package:
+        name:
+          - postgresql-server
+          - postgresql
+          - postgresql-contrib
+        state: present
+
+    - name: Initialize PostgreSQL database (if not already initialized)
+      ansible.builtin.command: postgresql-setup --initdb
+      args:
+        creates: "{{ postgresql_data_dir }}/PG_VERSION"
+
+    - name: Ensure PostgreSQL service is started and enabled
+      ansible.builtin.service:
+        name: "{{ postgresql_service_name }}"
+        state: started
+        enabled: true
+
+    - name: Configure PostgreSQL to listen on all interfaces
+      ansible.builtin.lineinfile:
+        path: "{{ postgresql_data_dir }}/postgresql.conf"
+        regexp: "^#?listen_addresses =.*"
+        line: "listen_addresses = '*'"
+      notify: Restart PostgreSQL
+
+    - name: Allow remote connections (insecure example)
+      ansible.builtin.lineinfile:
+        path: "{{ postgresql_data_dir }}/pg_hba.conf"
+        insertafter: EOF
+        line: "host    all             all             0.0.0.0/0               md5"
+      notify: Restart PostgreSQL
+
+  handlers:
+    - name: Restart PostgreSQL
+      ansible.builtin.service:
+        name: "{{ postgresql_service_name }}"
+        state: restarted
+
